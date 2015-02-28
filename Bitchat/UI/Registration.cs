@@ -16,5 +16,15 @@ namespace Bitchat.UI
         {
             InitializeComponent();
         }
+
+        private void Registration_Load(object sender, EventArgs e)
+        {
+            textBox3.Select();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

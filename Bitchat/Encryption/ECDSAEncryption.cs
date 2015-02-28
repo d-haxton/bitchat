@@ -15,6 +15,7 @@ namespace Bitchat.Encryption
         public string encryptedMessage { get; set; }
         public string decryptedMessage { get; set; }
         public string plaintextMessage { get; set; }
+        string path = Directory.GetCurrentDirectory();
         private const string pythonScriptLocation = "C:\\Python27\\ECDSAEncryption.py";
 
         public string run_cmd(string cmd, string args)

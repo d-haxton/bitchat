@@ -77,6 +77,7 @@
     <Compile Include="Encryption\ECDSAEncryption.cs" />
     <Compile Include="Encryption\BitDiffieHellmen.cs" />
     <Compile Include="Encryption\Handshake.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Base58.cs" />
     <Compile Include="Model\Base58CheckString.cs" />
@@ -143,14 +144,18 @@
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Registration.resx">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\test.resx">
       <DependentUpon>test.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +176,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Icons-Land-Vista-People-Religions-Jew-Male.ico" />
+    <None Include="Resources\ECDSAEncryption.py" />
+    <None Include="Resources\ECDSAEncryption.py.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
