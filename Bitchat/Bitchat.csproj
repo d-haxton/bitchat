@@ -97,6 +97,8 @@
     <Compile Include="Model\PublicKey.cs" />
     <Compile Include="Model\ShaPassphraseKeyPair.cs" />
     <Compile Include="Model\StringInterpreter.cs" />
+    <Compile Include="Security\KeyGen.cs" />
+    <Compile Include="Security\RegisterHotKey.cs" />
     <Compile Include="Socket\Client.cs" />
     <Compile Include="Socket\Opcodes.cs" />
     <Compile Include="UI\Chat.cs">
@@ -166,9 +168,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Security\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Icons-Land-Vista-People-Religions-Jew-Male.ico" />
   </ItemGroup>
