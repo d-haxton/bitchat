@@ -1,0 +1,2 @@
+c:\users\chaxtod\documents\visual studio 14\Projects\Bitchat\Bitchat\bin\Debug\Bitchat.exe.config
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\bin\Debug\Bitchat.exe.config
