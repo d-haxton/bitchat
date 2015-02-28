@@ -10,7 +10,7 @@ namespace Bitchat.Encryption
     {
         public AES()
         {
-
+            // i made a oo==poop
         }
     }
 }
