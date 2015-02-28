@@ -1,4 +1,6 @@
 ﻿using Bitchat.Encryption;
+using Bitchat.Socket;
+using Bitchat.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,25 +32,41 @@ namespace Bitchat
             ECDSAencrypt.encrypt("lolwtf");
             ECDSAencrypt.decrypt();
             textBox1.Text = ECDSAencrypt.decryptedMessage;*/
+
+            //Client c = new Client();
+            //MessageBox.Show(c.returnData);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BitcoinAddress btcAddress = new BitcoinAddress(textBox1.Text);
+            /*BitcoinAddress btcAddress = new BitcoinAddress(textBox1.Text);
             btcAddress.mineFromPrivate();
 
             textBox4.Text = btcAddress.privateKeyHex;
             textBox5.Text = btcAddress.publicKeyHex;
-            textBox2.Text = btcAddress.btcAddress;
+            textBox2.Text = btcAddress.btcAddress;*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ECDSAEncryption ECDSAencrypt = new ECDSAEncryption(textBox5.Text, textBox4.Text);
+           /* ECDSAEncryption ECDSAencrypt = new ECDSAEncryption(textBox5.Text, textBox4.Text);
             ECDSAencrypt.encrypt(textBox3.Text);
             ECDSAencrypt.decrypt();
             textBox6.Text = ECDSAencrypt.encryptedMessage;
-            textBox7.Text = ECDSAencrypt.decryptedMessage;
+            textBox7.Text = ECDSAencrypt.decryptedMessage;*/
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Friends f = new Friends();
+            f.Show();
+            // Send Login request to server
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Registration r = new Registration();
+            r.Show();
         }
     }
 }

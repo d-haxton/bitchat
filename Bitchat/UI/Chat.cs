@@ -12,9 +12,18 @@ namespace Bitchat.UI
 {
     public partial class Chat : Form
     {
-        public Chat()
+        private string chatUser;
+        public Chat(string chatUserInput)
         {
+            this.chatUser = chatUserInput;
             InitializeComponent();
+            this.Text = "Chatting with - " + chatUser;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Add("You said: " + textBox1.Text);
+            textBox1.Text = "";
         }
     }
 }

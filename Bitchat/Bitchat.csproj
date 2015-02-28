@@ -37,6 +37,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,10 +53,11 @@
     <Compile Include="CryptSharp\Pbkdf2.cs" />
     <Compile Include="CryptSharp\Salsa20Core.cs" />
     <Compile Include="CryptSharp\SCrypt.cs" />
-    <Compile Include="Encryption\AES.cs" />
+    <Compile Include="Encryption\BitAES.cs" />
     <Compile Include="Encryption\BitcoinAddress.cs" />
     <Compile Include="Encryption\ECDSAEncryption.cs" />
-    <Compile Include="Encryption\DiffieHellmen.cs" />
+    <Compile Include="Encryption\BitDiffieHellmen.cs" />
+    <Compile Include="Encryption\Handshake.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Base58.cs" />
     <Compile Include="Model\Base58CheckString.cs" />
@@ -75,6 +78,8 @@
     <Compile Include="Model\PublicKey.cs" />
     <Compile Include="Model\ShaPassphraseKeyPair.cs" />
     <Compile Include="Model\StringInterpreter.cs" />
+    <Compile Include="Socket\Client.cs" />
+    <Compile Include="Socket\Opcodes.cs" />
     <Compile Include="UI\Chat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +106,15 @@
     <Compile Include="UI\Registration.Designer.cs">
       <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Chat.resx">
+      <DependentUpon>Chat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Friends.resx">
       <DependentUpon>Friends.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +130,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -132,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Security\" />
-    <Folder Include="Socket\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

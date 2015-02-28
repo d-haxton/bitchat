@@ -16,5 +16,21 @@ namespace Bitchat.UI
         {
             InitializeComponent();
         }
+
+        private void Friends_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            Chat c = new Chat(listBox1.SelectedItem.ToString());
+            c.Show();
+        }
+
+        private void redbullToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Wheres the redbull?!");
+        }
     }
 }
