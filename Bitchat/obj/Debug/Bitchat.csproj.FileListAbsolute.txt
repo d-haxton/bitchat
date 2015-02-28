@@ -1,2 +1,10 @@
 c:\users\chaxtod\documents\visual studio 14\Projects\Bitchat\Bitchat\bin\Debug\Bitchat.exe.config
 C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\bin\Debug\Bitchat.exe.config
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\bin\Debug\Bitchat.exe
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\bin\Debug\Bitchat.pdb
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\obj\Debug\Bitchat.csprojResolveAssemblyReference.cache
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\obj\Debug\Bitchat.Login.resources
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\obj\Debug\Bitchat.Properties.Resources.resources
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\obj\Debug\Bitchat.csproj.GenerateResource.Cache
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\obj\Debug\Bitchat.exe
+C:\Users\chaxtod\Documents\GitHub\bitchat\Bitchat\obj\Debug\Bitchat.pdb
