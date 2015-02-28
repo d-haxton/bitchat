@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,9 +47,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptSharp\Helper.cs" />
+    <Compile Include="CryptSharp\Pbkdf2.cs" />
+    <Compile Include="CryptSharp\Salsa20Core.cs" />
+    <Compile Include="CryptSharp\SCrypt.cs" />
     <Compile Include="Encryption\AES.cs" />
+    <Compile Include="Encryption\BitcoinAddress.cs" />
     <Compile Include="Encryption\ECDSAEncryption.cs" />
     <Compile Include="Encryption\DiffieHellmen.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\Base58.cs" />
+    <Compile Include="Model\Base58CheckString.cs" />
+    <Compile Include="Model\Bip38Base.cs" />
+    <Compile Include="Model\Bip38Confirmation.cs" />
+    <Compile Include="Model\Bip38Intermediate.cs" />
+    <Compile Include="Model\Bip38KeyPair.cs" />
+    <Compile Include="Model\Bitcoin.cs" />
+    <Compile Include="Model\EncryptedKeyPair.cs" />
+    <Compile Include="Model\EscrowCode.cs" />
+    <Compile Include="Model\ExtraEntropy.cs" />
+    <Compile Include="Model\KeyCollection.cs" />
+    <Compile Include="Model\KeyCollectionItem.cs" />
+    <Compile Include="Model\KeyPair.cs" />
+    <Compile Include="Model\MiniKeyPair.cs" />
+    <Compile Include="Model\MofN.cs" />
+    <Compile Include="Model\PassphraseKeyPair.cs" />
+    <Compile Include="Model\PublicKey.cs" />
+    <Compile Include="Model\ShaPassphraseKeyPair.cs" />
+    <Compile Include="Model\StringInterpreter.cs" />
     <Compile Include="UI\Chat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +116,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

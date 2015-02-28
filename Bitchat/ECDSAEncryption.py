@@ -5,7 +5,7 @@
 # https://github.com/jackjack-jj/jeeq
 # Licensed under GPLv3
 
-import random,base64,hashlib,sys
+import random,base64,hashlib,sys,json
 
 _p  = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2FL
 _r  = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141L
@@ -317,10 +317,10 @@ def decrypt_message(pvk, enc, curved=curveBitcoin, verbose=False, generator=gene
 	assert phv==0, "Can't read version %d public header"%phv
 	hs = str_to_long(enc[3:5])
 	public_header=enc[5:5+hs]
-	if verbose: print 'Public header (size:%d)%s%s'%(hs, ': 0x'*int(bool(hs>0)), public_header.encode('hex'))
-	if verbose: print '  Version: %d'%phv
+	#if verbose: print 'Public header (size:%d)%s%s'%(hs, ': 0x'*int(bool(hs>0)), public_header.encode('hex'))
+	#if verbose: print '  Version: %d'%phv
 	checksum_pubkey=public_header[:2]
-	if verbose: print '  Checksum of pubkey: %s'%checksum_pubkey.encode('hex')
+	#if verbose: print '  Checksum of pubkey: %s'%checksum_pubkey.encode('hex')
 
 	address=filter(lambda x:sha256(x)[:2]==checksum_pubkey, pubkeys)
 	assert len(address)>0, 'Bad private key'
@@ -340,24 +340,19 @@ def decrypt_message(pvk, enc, curved=curveBitcoin, verbose=False, generator=gene
 		Mcalc = U+(V.negative_self())
 		r += ('%064x'%(Mcalc.x()-xoffset)).decode('hex')
 
-
+	
 	pvhv = str_to_long(r[0])
 	assert pvhv==0, "Can't read version %d private header"%pvhv
 	phs = str_to_long(r[1:3])
 	private_header = r[3:3+phs]
-	if verbose: print 'Private header (size:%d): 0x%s'%(phs, private_header.encode('hex'))
+	#if verbose: print 'Private header (size:%d): 0x%s'%(phs, private_header.encode('hex'))
 	size = str_to_long(private_header[:4])
 	checksum = private_header[4:6]
-	if verbose: print '  Message size: %d'%size
-	if verbose: print '  Checksum: %04x'%str_to_long(checksum)
 	r = r[3+phs:]
 
 	msg = r[:size]
 	hashmsg = sha256(msg)[:2]
 	checksumok = hashmsg==checksum
-	if verbose: print 'Decrypted message: '+msg
-	if verbose: print '  Hash: '+hashmsg.encode('hex')
-	if verbose: print '  Corresponds: '+str(checksumok)
 	
 
 	return [msg, checksumok, address]
@@ -372,13 +367,10 @@ def GetArg(a, d=''):
 	for i in range(1,len(sys.argv)):
 		if sys.argv[i-1]==a:
 			if a in ['-i']:
-				f=open(sys.argv[i],'r')
-				content=f.read()
-				f.close()
-				return content
+				return sys.argv[i]
 			return sys.argv[i]
 	if a == '-i':
-		print "Type the text to use. "+KeyboardInterruptText()+" to stop writing: "
+		#print "Type the text to use. "+KeyboardInterruptText()+" to stop writing: "
 		return ''.join(sys.stdin.readlines())
 	if a == '-k':
 		return raw_input("\nType the key to use: ")
@@ -391,15 +383,15 @@ def GetFlag(a, d=''):
 	return False
 
 def print_help(e=False):
-	print 'jeeq.py '+jeeqversion
-	print 'Encryption/decryption tool using Bitcoin keys'
-	print 'usage:'
-	print '   KEY GENERATION: '+sys.argv[0]+' -g [-v network number]'
-	print '   ENCRYPTION:     '+sys.argv[0]+' -e -i input_file -o output_file -k public_key  [-v network number]'
-	print '   DECRYPTION:     '+sys.argv[0]+' -d -i input_file -o output_file -k private_key [-v network number]'
-	print ''
-	print 'Missing arguments will be prompted.'
-	print 'Public keys are NOT Bitcoin addresses, you NEED public keys.'
+	#print 'jeeq.py '+jeeqversion
+	#print 'Encryption/decryption tool using Bitcoin keys'
+	#print 'usage:'
+	#print '   KEY GENERATION: '+sys.argv[0]+' -g [-v network number]'
+	#print '   ENCRYPTION:     '+sys.argv[0]+' -e -i input_file -o output_file -k public_key  [-v network number]'
+	#print '   DECRYPTION:     '+sys.argv[0]+' -d -i input_file -o output_file -k private_key [-v network number]'
+	#print ''
+	#print 'Missing arguments will be prompted.'
+	#print 'Public keys are NOT Bitcoin addresses, you NEED public keys.'
 	if e:
 		exit(0)
 
@@ -430,11 +422,7 @@ if __name__ == '__main__':
 	if GetFlag('--generate-keys') or GetFlag('-g'):
 		v=int(GetArg('-v',0))
 		keys=generate_keys(addv=v)
-		print 'Private key:              ', keys[0]
-		print 'Compressed public key:    ', keys[1]
-		print 'Uncompressed public key:  ', keys[2]
-		print 'Compressed address:       ', keys[3][0]
-		print 'Uncompressed address:     ', keys[3][1]
+		print json.dumps({'PrivateKey':keys[0], 'CompressedPublicKey':keys[1], 'UncompressedPublicKey':keys[2],'CompressedAddress':keys[3][0],'UncompressedAddress':keys[3][1]})
 		exit(0)
 
 	if GetFlag('-e'):
@@ -453,7 +441,9 @@ if __name__ == '__main__':
 			f=open(output_file,'w')
 			f.write(output)
 			f.close()
-		print "\n\nEncrypted message to "+public_key_to_bc_address(public_key,addv)+":\n"+output
+		#print "\n\nEncrypted message to "+public_key_to_bc_address(public_key,addv)+":\n"+output
+		#print json.dumps({'EncryptedMessage':output})
+		print output
 
 
 	elif GetFlag('-d'):
@@ -472,7 +462,10 @@ if __name__ == '__main__':
 			f=open(output_file,'w')
 			f.write(output[0])
 			f.close()
-		print "\nDecrypted message to "+public_key_to_bc_address(output[2],addv)+":\n"+output[0]
+		#print "\nDecrypted message to "+public_key_to_bc_address(output[2],addv)+":\n"+output[0]
+		#print json.dumps({'DecryptedMessage':output[0]})
+		print output[0]
+		
 
 	else:
 		print_help(True)
