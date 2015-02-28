@@ -8,5 +8,9 @@ namespace Bitchat.Encryption
 {
     class AES
     {
+        public AES()
+        {
+
+        }
     }
 }
