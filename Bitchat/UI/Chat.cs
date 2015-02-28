@@ -23,7 +23,14 @@ namespace Bitchat.UI
         private void button1_Click(object sender, EventArgs e)
         {
             listBox1.Items.Add("You said: " + textBox1.Text);
+            listBox1.TopIndex = listBox1.Items.Count - 1;
             textBox1.Text = "";
+            textBox1.Select();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
