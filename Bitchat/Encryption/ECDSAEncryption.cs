@@ -37,6 +37,11 @@ namespace Bitchat.Encryption
 
         public ECDSAEncryption(string publickey, string privatekey)
         {
+            //string[] lines = ECDSAEncryption.py;
+            // WriteAllLines creates a file, writes a collection of strings to the file, 
+            // and then closes the file.
+            //System.IO.File.WriteAllLines(@"C:\Users\Public\TestFolder\WriteLines.txt", lines);
+
             this.publickey = publickey;
             this.privatekey = privatekey;
         }
