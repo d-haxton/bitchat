@@ -74,7 +74,7 @@ namespace Bitchat.UI
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            //label1.Text = "" + (char)e.KeyCode;
+            label1.Text = "" + (char)e.KeyCode;
             if (kg.getDidGenKeyStroke())
             {
                 kg.setDidGenKeyStroke(false);
