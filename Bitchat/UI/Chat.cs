@@ -24,10 +24,10 @@ namespace Bitchat.UI
         private string chatUser;
         public Chat(string chatUserInput, bool hs)
         {
-            //kg = new KeyGen();
-            //kc = new KeysConverter();
-            //_RegisKey = new RegisterHotKeyClass();
-            //currPos = 0;
+            kg = new KeyGen();
+            kc = new KeysConverter();
+            _RegisKey = new RegisterHotKeyClass();
+            currPos = 0;
 
             this.chatUser = chatUserInput.Trim();
             InitializeComponent();
@@ -75,7 +75,7 @@ namespace Bitchat.UI
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             //label1.Text = "" + (char)e.KeyCode;
-            /*if (kg.getDidGenKeyStroke())
+            if (kg.getDidGenKeyStroke())
             {
                 kg.setDidGenKeyStroke(false);
             }
@@ -145,7 +145,7 @@ namespace Bitchat.UI
                 }
 
                 textBox1.SelectionStart = currPos;
-            }*/
+            }
         }
 
         bool boobs;
@@ -157,33 +157,33 @@ namespace Bitchat.UI
             }
             if (!boobs)
             {
-                //kg.setDidGenKeyStroke(true);
-                //kg.genKeyStroke();
+                kg.setDidGenKeyStroke(true);
+                kg.genKeyStroke();
             }
 
         }
 
         private void Chat_Load(object sender, EventArgs e)
         {
-            //_RegisKey.Keys = Keys.PrintScreen;
-            //_RegisKey.ModKey = 0;
-            //_RegisKey.WindowHandle = this.Handle;
-            //_RegisKey.HotKey += new RegisterHotKeyClass.HotKeyPass(_Regis_HotKey);
-            //_RegisKey.StarHotKey();
+            _RegisKey.Keys = Keys.PrintScreen;
+            _RegisKey.ModKey = 0;
+            _RegisKey.WindowHandle = this.Handle;
+            _RegisKey.HotKey += new RegisterHotKeyClass.HotKeyPass(_Regis_HotKey);
+            _RegisKey.StarHotKey();
         }
 
         private void Chat_Activated(object sender, EventArgs e)
         {
-            //listBox1.BackColor = SystemColors.Window;
-            //textBox1.BackColor = SystemColors.Window;
-            //boobs = false;
+            listBox1.BackColor = SystemColors.Window;
+            textBox1.BackColor = SystemColors.Window;
+            boobs = false;
         }
 
         private void Chat_Deactivate(object sender, EventArgs e)
         {
-            //listBox1.BackColor = SystemColors.WindowText;
-           // textBox1.BackColor = SystemColors.WindowText;
-            //boobs = true;
+            listBox1.BackColor = SystemColors.WindowText;
+            textBox1.BackColor = SystemColors.WindowText;
+            boobs = true;
         }
 
 
