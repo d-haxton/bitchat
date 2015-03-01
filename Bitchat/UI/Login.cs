@@ -72,7 +72,7 @@ namespace Bitchat
                 Global.publicKeyHex = btcAddress.publicKeyHex;
                 Global.privateKeyHex = btcAddress.privateKeyHex;
                 Global.btcAddress = btcAddress.btcAddress;
-                Global.username = textBox1.Text;
+                Global.username = "";
 
                 if (!(Global.publicKeyHex.Length > 1))
                     return;

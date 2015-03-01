@@ -13,27 +13,23 @@ namespace Bitchat.Socket
     {
         public static byte[] StringToByteArray(String hex)
         {
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            return bytes;
+            return Convert.FromBase64String(hex);
         }
-        public static string ByteArrayToString(byte[] ba)
+        public static String ByteArrayToString(byte[] ba)
         {
-            string hex = BitConverter.ToString(ba);
-            return hex.Replace("-", "");
+            return Convert.ToBase64String(ba);
         }
         public Parser(string json)
         {
-            Global.messages.Push(json);
             try
             {
                 var o = JObject.Parse(json);
                 string opcode = (string)o["opcode"];
                 if (opcode.Equals("0x16"))
                 {
+                    ECDSAEncryption ecdsacrypto = new ECDSAEncryption(Global.publicKeyHex, Global.privateKeyHex);
                     MessageBit mb = JsonConvert.DeserializeObject<MessageBit>(json);
+                    //Global.messageQueue.Push(json);
                     if (mb.messageType.Equals("handshake"))
                         new Handshake(mb, 2);
                     else if (mb.messageType.Equals("init"))
@@ -41,8 +37,21 @@ namespace Bitchat.Socket
                     else if (mb.messageType.Equals("finalize"))
                         new Handshake(mb, 3);
                     else if (mb.messageType.Equals("chat"))
-                        return;
-                        // not really im just too lazy to do something with it right now
+                    {
+                        try
+                        {
+                            ECDSAEncryption ECDSACrypto = Global.EncryptionDict[mb.username];
+                            ECDSACrypto.decrypt(mb.encryptedText);
+                            string decrypted = ECDSACrypto.decryptedMessage;
+                            Global.messageQueue.Push("They said: " + decrypted);
+                        }
+                        catch(Exception ex)
+                        {
+                            //Global.messageQueue.Push(ex.Message);
+                        }
+
+                    }
+                        
 
                     if (mb.messageType.Equals("DH"))
                     {

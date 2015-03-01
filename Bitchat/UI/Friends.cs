@@ -25,7 +25,7 @@ namespace Bitchat.UI
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            Chat c = new Chat(listBox1.SelectedItem.ToString());
+            Chat c = new Chat(listBox1.SelectedItem.ToString(), true);
             c.Show();
         }
 
@@ -42,6 +42,17 @@ namespace Bitchat.UI
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (Global.openChat)
+            {
+                Chat c = new Chat(Global.openChatString, false);
+                c.Show();
+                Global.openChat = false;
+            }
+            
         }
     }
 }

@@ -49,16 +49,19 @@ namespace Bitchat.Encryption
 
         public void encrypt(string message)
         {
+            message = message.Replace(' ', '&');
             encryptedMessage = run_cmd(pythonScriptLocation, "-e -i " + message + " -k " + publickey);
         }
 
         public void decrypt(string message)
         {
             decryptedMessage = run_cmd(pythonScriptLocation, "-d -i " + message + " -k " + privatekey);
+            decryptedMessage = decryptedMessage.Replace('&', ' ');
         }
         public void decrypt()
         {
             decryptedMessage = run_cmd(pythonScriptLocation, "-d -i " + encryptedMessage + " -k " + privatekey);
+            decryptedMessage = decryptedMessage.Replace('&', ' ');
         }
 
         public void generate()

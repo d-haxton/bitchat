@@ -19,6 +19,13 @@ namespace Bitchat
         public static String privateKeyHex = "";
 
         public static BitDiffieHellmen bitDH = new BitDiffieHellmen();
-        public static Dictionary<string, BitAES> AESKeyChain = new Dictionary<string, BitAES>();
+        public static Dictionary<string, ECDSAEncryption> EncryptionDict = new Dictionary<string, ECDSAEncryption>();
+
+        public static Stack<string> messageQueue = new Stack<string>();
+
+        public static bool openChat = false;
+        public static string openChatString = "";
+
+        public static byte[] bitDHKey;
     }
 }
