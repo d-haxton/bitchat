@@ -45,7 +45,6 @@ namespace Bitchat.Encryption
         }
         public Handshake(MessageBit mb, int init)
         {
-            mb.username = talkingToAddress;
             if (init == 1) {
                 BitDiffieHellmen bitDH = new BitDiffieHellmen();
 
