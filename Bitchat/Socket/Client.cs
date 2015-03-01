@@ -72,7 +72,7 @@ namespace Bitchat.Socket
         {
             while (true)
             {
-                byte[] inStream = new byte[10025];
+                byte[] inStream = new byte[65525000];
                 serverStream.Read(inStream, 0, (int)clientSocket.ReceiveBufferSize);
                 //Parse
                 new Parser(Encoding.ASCII.GetString(inStream));
