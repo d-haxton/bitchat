@@ -45,10 +45,13 @@ namespace Bitchat.Encryption
         }
         public Handshake(MessageBit mb, int init)
         {
+            // receive init
             if (init == 1) {
                 BitDiffieHellmen bitDH = new BitDiffieHellmen();
+                ECDSAEncryption ecdsacrypto = new ECDSAEncryption(mb.publicKey, null);
 
                 bitDH.generatePublicKey();
+                ecdsacrypto.encrypt(ByteArrayToString(bitDH.publicKey));
 
                 MessageBit replyBit = new MessageBit();
                 replyBit.chatterID = mb.username;
@@ -60,6 +63,7 @@ namespace Bitchat.Encryption
                 string json = JsonConvert.SerializeObject(replyBit);
                 Global.client.send(json);
             }
+            //receive handshake
             else if(init == 2)
             {
                 ECDSAEncryption ecdsacrypto = new ECDSAEncryption(mb.publicKey, Global.privateKeyHex);
@@ -83,6 +87,7 @@ namespace Bitchat.Encryption
                 string json = JsonConvert.SerializeObject(replyBit);
                 Global.client.send(json);
             }
+            //receive finalize
             else if(init == 3)
             {
                 ECDSAEncryption ecdsacrypto = new ECDSAEncryption(mb.publicKey, Global.privateKeyHex);
