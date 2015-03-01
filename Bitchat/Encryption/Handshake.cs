@@ -57,7 +57,7 @@ namespace Bitchat.Encryption
                 replyBit.chatterID = mb.username;
                 replyBit.username = Global.btcAddress;
                 replyBit.messageType = "handshake";
-                replyBit.encryptedText = "";
+                replyBit.encryptedText = ecdsacrypto.encryptedMessage;
                 replyBit.publicKey = Global.publicKeyHex;
 
                 string json = JsonConvert.SerializeObject(replyBit);
