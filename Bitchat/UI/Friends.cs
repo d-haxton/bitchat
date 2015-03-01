@@ -19,7 +19,8 @@ namespace Bitchat.UI
 
         private void Friends_Load(object sender, EventArgs e)
         {
-
+            label3.Text = Global.btcAddress;
+            label4.Text = Global.username;
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
@@ -31,6 +32,16 @@ namespace Bitchat.UI
         private void redbullToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Wheres the redbull?!");
+        }
+
+        private void Friends_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

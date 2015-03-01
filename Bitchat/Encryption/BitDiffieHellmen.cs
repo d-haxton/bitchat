@@ -18,6 +18,7 @@ namespace Bitchat.Encryption
         public BitDiffieHellmen()
         {
             ecdh = new ECDiffieHellmanCng();
+            generatePublicKey();
         }
 
         public void generatePublicKey()

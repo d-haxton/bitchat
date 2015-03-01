@@ -1,6 +1,7 @@
 ﻿using Bitchat.Encryption;
 using Bitchat.Socket;
 using Bitchat.UI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,18 +56,94 @@ namespace Bitchat
             textBox6.Text = ECDSAencrypt.encryptedMessage;
             textBox7.Text = ECDSAencrypt.decryptedMessage;*/
         }
-
+        public static string ByteArrayToString(byte[] ba)
+        {
+            string hex = BitConverter.ToString(ba);
+            return hex.Replace("-", "");
+        }
         private void button1_Click_1(object sender, EventArgs e)
         {
+            BitcoinAddress btcAddress = new BitcoinAddress(textBox2.Text);
+            try
+            {
+                btcAddress.mineFromPrivate();
+
+                Global.privateKey = textBox2.Text;
+                Global.publicKeyHex = btcAddress.publicKeyHex;
+                Global.privateKeyHex = btcAddress.privateKeyHex;
+                Global.btcAddress = btcAddress.btcAddress;
+                Global.username = textBox1.Text;
+
+                if (!(Global.publicKeyHex.Length > 1))
+                    return;
+
+                Global.client = new Client();
+
+                LoginRequest lr = new LoginRequest();
+                lr.publicKey = Global.publicKeyHex;
+                lr.username = Global.btcAddress;
+                string json = JsonConvert.SerializeObject(lr);
+                Global.client.send(json);
+
+                Friends f = new Friends();
+                f.Show();
+
+                this.Hide();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("error: " + ex.Message);
+            }
+            /*
+            Global.client = new Client();
+            string publicKey = "043D4AF2F97878BEEF0220F6F17E2ABB694BAC3F74C1FFE8DEAFFE27D09DDE7629E8B601306BF59FE3C282E639066C510099F15BBCBFF3F28F70DCCBE02074AF3D";
             Friends f = new Friends();
-            f.Show();
+            LoginRequest lr = new LoginRequest();
+            lr.publicKey = publicKey;
+            lr.username = "david";
+            string json = JsonConvert.SerializeObject(lr);
+            Global.client.send(json);
+            MessageBox.Show(json);
+
+            lr.username = "evan";
+            json = JsonConvert.SerializeObject(lr);
+            Global.client.send(json);
+
+            MessageBox.Show(json);
+
+            MessageBit mb = new MessageBit();
+            mb.chatterID = "evan";
+
+            BitDiffieHellmen bitDH1 = new BitDiffieHellmen();
+            bitDH1.generatePublicKey();
+
+            string bytesAsString = ByteArrayToString(bitDH1.publicKey);            
+
+            mb.encryptedText = bytesAsString;
+            mb.publicKey = "043D4AF2F97878BEEF0220F6F17E2ABB694BAC3F74C1FFE8DEAFFE27D09DDE7629E8B601306BF59FE3C282E639066C510099F15BBCBFF3F28F70DCCBE02074AF3D";
+            mb.username = "david";
+            mb.messageType = "DH";
+
+            json = JsonConvert.SerializeObject(mb);
+            Global.client.send(json);
+            MessageBox.Show(json);
+            //f.Show();
             // Send Login request to server
+            */
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             Registration r = new Registration();
             r.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            while(Global.messages.Count > 0)
+            {
+                MessageBox.Show(Global.messages.Pop());
+            }
         }
     }
 }
