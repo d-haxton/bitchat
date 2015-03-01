@@ -19,6 +19,6 @@ namespace Bitchat
         public static String privateKeyHex = "";
 
         public static BitDiffieHellmen bitDH = new BitDiffieHellmen();
-        public static List<string> DHSent = new List<string>();
+        public static Dictionary<string, BitAES> AESKeyChain = new Dictionary<string, BitAES>();
     }
 }

@@ -150,24 +150,9 @@
             this.listBox1.ItemHeight = 16;
             this.listBox1.Items.AddRange(new object[] {
             "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j",
-            "1E4SKFTSmDSE8H9qx3WShBXy2NZps7fy7j"});
+            "19UYgxyzcGCHhydy9VhsPfv7Q7StLCsXpR",
+            "1866B1ExzbQp4YzdzPk9sGyLH77ww9S5xL",
+            "16KSMe4iG1xjZmp3UvsjBE6Vse9g9LVbFh"});
             this.listBox1.Location = new System.Drawing.Point(15, 102);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(327, 276);

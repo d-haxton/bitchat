@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bitchat.Security;
+using Bitchat.Encryption;
 
 namespace Bitchat.UI
 {
@@ -29,6 +30,7 @@ namespace Bitchat.UI
             this.chatUser = chatUserInput;
             InitializeComponent();
             this.Text = "Chatting with - " + chatUser;
+            Handshake hs = new Handshake(chatUser);
         }
 
         void _Regis_HotKey()
@@ -55,7 +57,7 @@ namespace Bitchat.UI
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            label1.Text = "" + (char)e.KeyCode;
+            //label1.Text = "" + (char)e.KeyCode;
             if (kg.getDidGenKeyStroke())
             {
                 kg.setDidGenKeyStroke(false);
@@ -129,10 +131,15 @@ namespace Bitchat.UI
             }
         }
 
+        bool boobs;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            kg.setDidGenKeyStroke(true);
-            kg.genKeyStroke();
+            if (!boobs)
+            {
+                kg.setDidGenKeyStroke(true);
+                kg.genKeyStroke();
+            }
+
         }
 
         private void Chat_Load(object sender, EventArgs e)
@@ -148,12 +155,14 @@ namespace Bitchat.UI
         {
             listBox1.BackColor = SystemColors.Window;
             textBox1.BackColor = SystemColors.Window;
+            boobs = false;
         }
 
         private void Chat_Deactivate(object sender, EventArgs e)
         {
             listBox1.BackColor = SystemColors.WindowText;
             textBox1.BackColor = SystemColors.WindowText;
+            boobs = true;
         }
 
 
